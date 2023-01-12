@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_04_082139) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_12_133849) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,6 +26,70 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_04_082139) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "courses", force: :cascade do |t|
+    t.string "course_title"
+    t.string "course_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "enrollments", force: :cascade do |t|
+    t.bigint "section_id", null: false
+    t.bigint "student_id", null: false
+    t.bigint "semester_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "grade_id", default: 1
+    t.index ["grade_id"], name: "index_enrollments_on_grade_id"
+    t.index ["section_id"], name: "index_enrollments_on_section_id"
+    t.index ["semester_id"], name: "index_enrollments_on_semester_id"
+    t.index ["student_id"], name: "index_enrollments_on_student_id"
+  end
+
+  create_table "expertises", force: :cascade do |t|
+    t.bigint "course_id", null: false
+    t.bigint "teacher_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_expertises_on_course_id"
+    t.index ["teacher_id"], name: "index_expertises_on_teacher_id"
+  end
+
+  create_table "grades", force: :cascade do |t|
+    t.string "grade_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sections", force: :cascade do |t|
+    t.string "section_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "semester_id"
+    t.bigint "teacher_id"
+    t.bigint "course_id"
+    t.index ["course_id"], name: "index_sections_on_course_id"
+    t.index ["semester_id"], name: "index_sections_on_semester_id"
+    t.index ["teacher_id"], name: "index_sections_on_teacher_id"
+  end
+
+  create_table "semesters", force: :cascade do |t|
+    t.string "semester_type"
+    t.integer "semester_no"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "student_semesters", force: :cascade do |t|
+    t.bigint "student_id"
+    t.bigint "semester_id"
+    t.string "enroll_year"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["semester_id"], name: "index_student_semesters_on_semester_id"
+    t.index ["student_id"], name: "index_student_semesters_on_student_id"
+  end
+
   create_table "students", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -34,9 +98,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_04_082139) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "semester"
     t.string "first_name"
     t.string "last_name"
     t.date "Date_of_Birth"
+    t.integer "roll_no"
     t.index ["email"], name: "index_students_on_email", unique: true
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
   end
@@ -56,4 +122,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_04_082139) do
     t.index ["reset_password_token"], name: "index_teachers_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "enrollments", "sections"
+  add_foreign_key "enrollments", "semesters"
+  add_foreign_key "enrollments", "students"
+  add_foreign_key "expertises", "courses"
+  add_foreign_key "expertises", "teachers"
 end

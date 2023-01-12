@@ -1,0 +1,37 @@
+<%= form_for [:admin, @section] do |f| %>
+  <div class="container-fluid w-25 border rounded shadow mt-5 p-4 text-center bg-light">
+    <div class="field">
+      <%= f.label :course %><br />
+      <%= f.select :course_id, options_from_collection_for_select(Course.all, :id, :course_title),{}, class:"form-control"%>
+    </div>
+
+    <div class="field">
+      <%= f.label :teacher %><br />
+      <%= f.select :teacher_id, options_from_collection_for_select(Teacher.all, :id, :first_name),{}, class:"form-control"%>
+    </div>
+
+    <div class="field">
+      <p>
+        <%= f.label :semester %><br />
+        <%= f.select :semester_id, options_for_select(Semester.all.map {|item| ["#{item.semester_no} - #{item.semester_type}", item.id]}),{}, class:"form-control" %>
+      </p>
+    </div>
+
+    <div class="field">
+      <p>
+        <%= f.label :section_name %><br />
+        <%= f.text_field :section_name, class:"form-control"%>
+      </p>
+    </div>
+
+    <div class="actions">
+      <p>
+        <%= f.submit class: 'btn btn-secondary' %>
+      </p>
+    </div>
+
+    <div class="actions">
+      <%= link_to "Back", admin_sections_path, class: 'btn btn-secondary' %>
+    </div>
+  </div>
+<% end %>

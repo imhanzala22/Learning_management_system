@@ -1,0 +1,42 @@
+<div class="container-fluid border rounded shadow mt-5 p-4 text-center w-75 bg-light">
+  <h1>Sections</h1>
+</div>
+
+<div class="container-fluid border rounded shadow mt-5 p-4 text-center w-75 bg-light">
+
+  <table class="table bg-light ">
+    <thead>
+      <tr>
+        <th scope="col">Sr.no</th>
+        <th scope="col">Section Name</th>
+        <th scope="col">Semester</th>
+        <th scope="col">Course Name</th>
+        <th scope="col">Teacher Name</th>
+        <th scope="col">Edit | Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @sections.each do |section| %>
+            <td><input type="checkbox" name="brand"> <%= section.id %> </td>
+            <td><%= section.section_name%>
+            <td><%= section.semester.semester_no %></td>
+            <td><%= section.course.course_title %></td>
+            <td><%= section.teacher.first_name %> <%= section.teacher.last_name %></td>
+            <td>
+              <%= link_to "Edit", edit_admin_section_path(section), class:"btn btn-secondary" %>
+              <%= link_to "Delete", admin_section_path(section),data: {
+                turbo_method: :delete,
+                turbo_confirm: "Are you sure?"
+              }, class:"btn btn-secondary" %>
+            </td>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="container-fluid border rounded shadow mt-5 p-4 text-center w-75 bg-light">
+  <p>
+    <%= link_to "Add Section", new_admin_section_path, class: "btn btn-secondary" %>
+    <%= link_to "Back", admin_session_index_path, class: "btn btn-secondary" %>
+  </p>
+</div>

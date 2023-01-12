@@ -1,0 +1,38 @@
+<div class="container-fluid border rounded shadow mt-5 p-4 text-center w-75 bg-white">
+  <h1>Courses</h1>
+</div>
+
+<div class="container-fluid border rounded shadow mt-5 p-4 text-center w-75 bg-white">
+  <%= render "search" %>
+  <table class="table bg-light ">
+    <thead>
+      <tr>
+        <th scope="col">Sr.no</th>
+        <th scope="col">Course Title</th>
+        <th scope="col">Course Code</th>
+        <th scope="col">Edit | Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @courses.each do |course| %>
+            <td><input type="checkbox" name="brand"> <%= course.id %> </td>
+            <td><%= course.course_title %></td>
+            <td><%= course.course_code %></td>
+            <td>
+              <%= link_to "Edit", edit_admin_course_path(course), class:"btn btn-secondary" %>
+              <%= link_to "Delete", admin_course_path(course),data: {
+                turbo_method: :delete,
+                turbo_confirm: "Are you sure?"
+              }, class:"btn btn-secondary" %>
+            </td>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="container-fluid border rounded shadow mt-5 p-4 text-center w-75 bg-white">
+  <p>
+    <%= link_to "Add Course", new_admin_course_path, class: "btn btn-secondary" %>
+    <%= link_to "Back", admin_session_index_path, class: "btn btn-secondary" %>
+  </p>
+</div>

@@ -1,0 +1,26 @@
+<%= form_for [:admin, @course] do |f| %>
+  <div class="container-fluid w-25 border rounded shadow mt-5 p-4 text-center bg-light">
+    <div class="field">
+      <%= f.label :course_title %><br />
+      <%= f.text_field :course_title, class:"form-control"  %>
+    </div>
+  
+    <div class="field">
+      <p>
+        <%= f.label :course_code %><br />
+        <%= f.text_field :course_code, class:"form-control" %>
+      </p>
+    </div>
+  
+    <div class="actions">
+      <p>
+        <%= f.submit class: 'btn btn-secondary' %>
+      </p>
+    </div>
+
+    <div class="actions">
+      <%= link_to "Back", admin_courses_path, class: 'btn btn-secondary'  %>
+    </div>
+  </div>
+<% end %>
+  

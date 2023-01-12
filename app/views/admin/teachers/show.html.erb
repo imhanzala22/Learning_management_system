@@ -1,0 +1,34 @@
+<p>
+	<strong> ID : </strong> 
+	<%= @teacher.id %>
+</p>
+
+<p>
+	<strong> First Name : </strong> 
+	<%= @teacher.first_name %>
+</p>
+
+<p>
+	<strong> Last Name : </strong>
+	<%= @teacher.last_name %>
+</p>
+
+<p>
+	<strong> Email : </strong>
+	<%= @teacher.email %>
+</p>
+
+<p>
+	<strong> Date_of_Birth : </strong>
+	<%= @teacher.Date_of_Birth %>
+</p>
+
+<ul>
+  <li><%= link_to "Edit", edit_admin_teacher_path(@teacher) %></li>
+  <li><%= link_to "Destroy", admin_teacher_path(@teacher), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></li>
+</ul>
+
+<%= link_to "Back", admin_teachers_path %>

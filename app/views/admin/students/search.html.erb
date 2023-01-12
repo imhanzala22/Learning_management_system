@@ -1,0 +1,46 @@
+<div class="container-fluid border rounded shadow mt-5 p-4 text-center w-75 bg-light">
+	<h3>Search Result</h3>
+</div>
+
+<div class="container-fluid border rounded shadow mt-5 p-4 text-center w-75 bg-light">
+  <table class="table bg-light ">
+    <thead>
+      <tr>
+        <th scope="col">Sr.no</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Roll no</th>
+        <th scope="col">Semester</th>
+        <th scope="col">Semester Type</th>
+        <th scope="col">Email</th>
+        <th scope="col">Date of Birth</th>
+        <th scope="col">Edit | Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @results.each do |result| %>
+            <td><input type="checkbox" name="brand"> <%= result.id %> </td>
+            <td><%= result.first_name %></td>
+            <td><%= result.last_name %></td>
+            <td><%= result.roll_no %></td>
+            <td><%= result.semesters.last.semester_no %></td>
+            <td><%= result.semesters.last.semester_type %></td>
+            <td><%= result.email %></td>
+            <td><%= result.Date_of_Birth %></td>
+            <td>
+              <%= link_to "Edit", edit_admin_student_path(result), class:"btn btn-secondary" %>
+              <%= link_to "Delete", admin_student_path(result),data: {
+                turbo_method: :delete,
+                turbo_confirm: "Are you sure?"
+              }, class:"btn btn-secondary" %>
+            </td>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="container-fluid border rounded shadow mt-5 p-4 text-center w-75 bg-light">
+	<p>
+		<%= link_to "Back", admin_students_path, class:"btn btn-secondary" %>
+	</p>
+</div>

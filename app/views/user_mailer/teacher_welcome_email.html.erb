@@ -1,0 +1,16 @@
+<html>
+  <body>
+    <h1>Welcome to Amroodlab.lms, <%= @teacher.first_name %></h1>
+    <p>
+      You have been added to Amroodlab.lms
+    </p>
+    <p>
+      To login to the site, just follow this link:
+       <%= link_to "click", teacher_session_url %>
+       Your login credentials are
+       Email: <%= @teacher.email %>
+       Password : 112233
+    </p>
+    <p>Thanks for joining and have a great day!</p>
+  </body>
+</html>

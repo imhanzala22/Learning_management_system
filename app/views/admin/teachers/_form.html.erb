@@ -1,0 +1,53 @@
+<%= form_for [:admin, @teacher] do |f| %>
+  <div class="container-fluid w-25 border rounded shadow mt-5 p-4 text-center bg-light">
+    <div class="field">
+      <%= f.label :first_name %><br />
+      <%= f.text_field :first_name, class:"form-control" %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :last_name %><br />
+      <%= f.text_field :last_name, class:"form-control"  %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :Date_of_Birth %><br />
+      <%= f.date_select :Date_of_Birth, start_year: 1990, end_year: Time.now.year, class:"form-control"  %>
+    </div>
+
+    <div class="field">
+      <%= label_tag :Expertise %><br />
+      <%= select_tag :course_ids,options_from_collection_for_select(Course.all,:id,:course_title),:multiple=>true, class:"form-control" %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control"  %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password", class:"form-control"  %>
+    </div>
+  
+    <div class="field">
+      <p>
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control"  %>
+      </p>
+    </div>
+  
+    <div class="actions">
+      <p>
+        <%= f.submit class: 'btn btn-secondary' %>
+      </p>
+    </div>
+    <div class="actions">
+      <%= link_to "Back", admin_teachers_path, class: 'btn btn-secondary'  %>
+    </div>
+  </div>
+<% end %>
+  

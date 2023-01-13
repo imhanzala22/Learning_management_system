@@ -17,13 +17,6 @@
         <%= f.select :section_id, options_for_select(Section.all.map {|item| ["#{item.course.course_title} - #{item.section_name}", item.id]}),{}, class:"form-control" %>
       </p>
     </div>
-
-    <div class="field">
-      <p>
-        <%= f.label :grade %><br />
-        <%= f.collection_select :grade_id, Grade.all, :id, :grade_type, {selected: @enrollment.grade.id }, class:"form-control"%>
-      </p>
-    </div>
   
     <div class="actions">
       <p>

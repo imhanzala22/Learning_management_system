@@ -1,0 +1,39 @@
+<%= form_for [:admin, @enrollment] do |f| %>
+    <div class="container-fluid w-25 border rounded shadow mt-5 p-4 text-center bg-light">
+  
+      <div class="field">
+        <%= label_tag :students %><br />
+        <%= f.select :student_id, options_from_collection_for_select(Student.all, :id, :first_name), {}, class: "form-control" %>
+      </div>
+  
+      <div class="field">
+        <%= label_tag :teachers %><br />
+        <%= select_tag :teacher_id,options_from_collection_for_select(Teacher.all,:id,:first_name), class:"form-control" %>
+      </div>
+  
+      <div class="field">
+        <p>
+          <%= f.label :course %><br />
+          <%= f.select :section_id, options_for_select(Section.all.map {|item| ["#{item.course.course_title} - #{item.section_name}", item.id]}),{}, class:"form-control" %>
+        </p>
+      </div>
+  
+      <div class="field">
+        <p>
+          <%= f.label :grade %><br />
+          <%= f.collection_select :grade_id, Grade.all, :id, :grade_type, {selected: @enrollment.grade.id }, class:"form-control"%>
+        </p>
+      </div>
+    
+      <div class="actions">
+        <p>
+          <%= f.submit class: 'btn btn-secondary' %>
+        </p>
+      </div>
+  
+      <div class="actions">
+        <%= link_to "Back", admin_enrollments_path, class: 'btn btn-secondary'  %>
+      </div>
+    </div>
+  <% end %>
+  

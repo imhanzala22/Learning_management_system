@@ -26,7 +26,7 @@
             <td><%= enrollment.section.section_name %></td>
             <td><%= enrollment.section.teacher.first_name %> <%= enrollment.section.teacher.last_name %></td>
             <% if enrollment.grade.grade_type =="pending" %>
-              <td><%= link_to enrollment.grade.grade_type, edit_admin_enrollment_path(enrollment)%></td>
+              <td><%= link_to enrollment.grade.grade_type, edit_admin_enrollment_path(enrollment), class: "btn btn-secondary" %></td>
             <% else %>
               <td><%= enrollment.grade.grade_type%></td>
             <% end%>

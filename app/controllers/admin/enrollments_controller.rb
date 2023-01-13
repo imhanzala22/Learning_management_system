@@ -10,7 +10,6 @@ class Admin::EnrollmentsController < ApplicationController
 		@enrollment = Enrollment.new(enrollment_params)
 		@enrollment.semester_id=semester_id
 		if @enrollment.save
-			debugger
 			redirect_to admin_enrollments_path
 		else
 			render :new

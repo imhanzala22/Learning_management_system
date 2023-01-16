@@ -17,3 +17,14 @@
  body{
     background-color: #FCEDED;
   }
+.dashboard_cards{
+  margin: 160px 0 0 0;
+}
+.dashboard_cards1{
+  margin: 160px 0 0 0;
+}
+#card1:hover{
+  box-shadow: 8px 8px 5px #FCEDED;    
+  transform: scale(1.1);
+  transition:.3s;
+}

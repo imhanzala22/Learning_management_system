@@ -1,5 +1,5 @@
 class Admin::TeachersController < ApplicationController
-	TEACHERS_PER_PAGE = 9
+	TEACHERS_PER_PAGE = 8
 
 	def index
 		@page = params.fetch(:page,0).to_i
@@ -12,9 +12,7 @@ class Admin::TeachersController < ApplicationController
 
 	def create
 		@teacher = Teacher.new(teacher_params)
-		debugger
-		courses = params[:course_ids].map {|x| x.to_i} 
-		debugger
+		courses = params[:course_ids].map {|x| x.to_i}
         @teacher.course_ids = courses
 		if @teacher.save
 			UserMailer.teacher_welcome_email(@teacher).deliver

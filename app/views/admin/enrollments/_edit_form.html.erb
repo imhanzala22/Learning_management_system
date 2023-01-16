@@ -3,18 +3,18 @@
   
       <div class="field">
         <%= label_tag :students %><br />
-        <%= f.select :student_id, options_from_collection_for_select(Student.all, :id, :first_name), {}, class: "form-control" %>
+        <%= f.select :student_id, options_from_collection_for_select(Student.all, :id, :first_name,selected: @enrollment.student_id), {}, class: "form-control" %>
       </div>
   
       <div class="field">
         <%= label_tag :teachers %><br />
-        <%= select_tag :teacher_id,options_from_collection_for_select(Teacher.all,:id,:first_name), class:"form-control" %>
+        <%= select_tag :teacher_id,options_from_collection_for_select(Teacher.all,:id,:first_name,selected: @enrollment.section.teacher_id), class:"form-control" %>
       </div>
   
       <div class="field">
         <p>
           <%= f.label :course %><br />
-          <%= f.select :section_id, options_for_select(Section.all.map {|item| ["#{item.course.course_title} - #{item.section_name}", item.id]}),{}, class:"form-control" %>
+          <%= f.select :section_id, options_for_select(Section.all.map {|item| ["#{item.course.course_title} - #{item.section_name}", item.id]},selected: @enrollment.section_id),{}, class:"form-control" %>
         </p>
       </div>
   

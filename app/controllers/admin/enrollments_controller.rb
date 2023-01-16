@@ -20,9 +20,9 @@ class Admin::EnrollmentsController < ApplicationController
 	end
 
 	def update
+		@enrollment = Enrollment.find(params[:id])
 		semester_id = Student.find_by(id:params[:enrollment][:student_id].to_i).semesters[0].id
-		@enrollment = Enrollment.new(enrollment_params)
-		@enrollment.semester_id=semester_id
+		@enrollment.semester_id = semester_id
 		if @enrollment.update(enrollment_params)
 			redirect_to admin_enrollments_path
 		else

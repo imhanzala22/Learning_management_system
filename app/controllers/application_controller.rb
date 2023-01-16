@@ -12,13 +12,14 @@ class ApplicationController < ActionController::Base
   
     protected
 
-    def after_sign_in_path_for(resource)
-      if resource_class == Student
-        redirect_to student_dashboard_index_path
-      elsif resource_class == Teacher
-        redirect_to admin_teachers_dashboard_path
-      else
-        admin_session_index_path
-      end
-    end
+    # def after_sign_in_path_for(resource)
+    #   if resource_class == Student
+    #     debugger
+    #     redirect_to student_dashboard_index_path
+    #   elsif resource_class == Teacher
+    #     redirect_to admin_teachers_dashboard_path
+    #   else
+    #     admin_session_index_path
+    #   end
+    # end
 end

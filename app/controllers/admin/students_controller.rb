@@ -34,7 +34,7 @@ class Admin::StudentsController < ApplicationController
     if @student.update(student_params)
       semester_id=Semester.where(semester_type:params[:semester_type],semester_no:params[:semester_no]).ids[0]
       @student.student_semesters.create(semester_id:semester_id,enroll_year:params[:enroll_year])
-      redirect_to @article
+      redirect_to @student
     else
       render :edit, status: :unprocessable_entity
     end

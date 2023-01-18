@@ -1,0 +1,39 @@
+<%= render "dashboard" %>
+<div class="container-fluid border rounded shadow mt-5 p-4 text-center w-75 bg-light">
+  <h1><%= current_student.first_name %> <%= current_student.last_name %></h1>
+</div>
+
+<div class="container-fluid border rounded shadow mt-5 p-4 text-center w-75 bg-light">
+  <table class="table bg-light ">
+    <thead>
+      <tr>
+        <th scope="col">Sr.no</th>
+        <th scope="col">Semester</th>
+        <th scope="col">Semester</th>
+        <th scope="col">Course Name</th>
+        <th scope="col">Section</th>
+        <th scope="col">Teacher Name</th>
+        <th scope="col">Grade</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @semesters.each do |semester| %>
+      <% semester.enrollments.where(student_id:current_student.id).each do |enrollment| %>
+            <% if enrollment.grade_id != 1%>
+                <td><input type="checkbox" name="brand"> <%= enrollment.id %> </td>
+                <td><%= enrollment.semester.semester_no %>
+                <td><%= enrollment.semester.semester_type %>
+                <td><%= enrollment.section.course.course_title %></td>
+                <td><%= enrollment.section.section_name %></td>
+                <td><%= enrollment.section.teacher.first_name %> <%= enrollment.section.teacher.last_name %></td>
+                <td><%= enrollment.grade.grade_type %>
+            <% end %>
+          </tr>
+      <% end %>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="container-fluid border rounded shadow mt-5 p-4 text-center w-75 bg-light">
+  <%= link_to "Back", student_dashboard_index_path, class:"btn btn-secondary" %>
+</div>

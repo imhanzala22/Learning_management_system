@@ -15,7 +15,7 @@
  */
  @import 'bootstrap';
  body{
-    background-color: #FCEDED;
+    background-color: lightblue;
   }
 .dashboard_cards{
   margin: 160px 0 0 0;
@@ -28,3 +28,6 @@
   transform: scale(1.1);
   transition:.3s;
 }
+
+@import 'index_page.scss';
+@import 'about.scss';

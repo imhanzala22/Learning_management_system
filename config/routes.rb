@@ -29,12 +29,15 @@ Rails.application.routes.draw do
   namespace :student do
     root 'dashboard#index'
     resources :dashboard
-    get 'dashboard/enrollments/:id', to: 'dashboard#enrollments'
+    get 'dashboard/enrollments/:id', to: 'dashboard#enrollments', as: :enrollments
+    get 'dashboard/student_history/:id', to: 'dashboard#student_history', as: :history
   end
 
   namespace :teacher do
     root 'dashboard#index'
-    resources :dashboard, only: %i[index show]
+    resources :dashboard
+    get 'dashboard/section/:id', to: 'dashboard#section', as: :sections
+    get 'dashboard/course/:id', to: 'dashboard#course', as: :courses
   end
 
   # Defines the root path route ("/")

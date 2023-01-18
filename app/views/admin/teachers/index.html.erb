@@ -23,11 +23,11 @@
             <td><%= teacher.email %></td>
             <td><%= teacher.Date_of_Birth %></td>
             <td>
-              <%= link_to "Edit", edit_admin_teacher_path(teacher), class:"btn btn-secondary" %>
+              <%= link_to "Edit", edit_admin_teacher_path(teacher), class:"btn btn-info" %>
               <%= link_to "Delete", admin_teacher_path(teacher),data: {
                 turbo_method: :delete,
                 turbo_confirm: "Are you sure?"
-              }, class:"btn btn-secondary" %>
+              }, class:"btn btn-info" %>
             </td>
           </tr>
       <% end %>
@@ -37,15 +37,15 @@
 <div class="container-fluid border rounded shadow mt-5 p-4 text-center w-75 bg-light">
   <p>
     <% if @page == 0 %>
-        <%= link_to "Add Teacher", new_admin_teacher_path, class: "btn btn-secondary" %>
-        <%= link_to "Back", admin_dashboard_index_path, class: "btn btn-secondary" %>
-        <%= link_to "Next", admin_teachers_path(page: @page + 1), class: "btn btn-secondary" %>
+        <%= link_to "Add Teacher", new_admin_teacher_path, class: "btn btn-info" %>
+        <%= link_to "Back", admin_dashboard_index_path, class: "btn btn-info" %>
+        <%= link_to "Next", admin_teachers_path(page: @page + 1), class: "btn btn-info" %>
       <% elsif @page = 1 %>
-        <%= link_to "Prev", admin_teachers_path(page: @page - 1), class: "btn btn-secondary" %>
-        <%= link_to "Add Teacher", new_admin_teacher_path, class: "btn btn-secondary" %>
-        <%= link_to "Back", admin_dashboard_index_path, class: "btn btn-secondary" %>
+        <%= link_to "Prev", admin_teachers_path(page: @page - 1), class: "btn btn-info" %>
+        <%= link_to "Add Teacher", new_admin_teacher_path, class: "btn btn-info" %>
+        <%= link_to "Back", admin_dashboard_index_path, class: "btn btn-info" %>
       <% else %>
-        <%= link_to "Next", admin_teachers_path(page: @page + 1), class: "btn btn-secondary" %>
+        <%= link_to "Next", admin_teachers_path(page: @page + 1), class: "btn btn-info" %>
       <% end %>
   </p>
 </div>

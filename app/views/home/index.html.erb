@@ -1,1 +1,13 @@
-<%= render "navbar" %>
+<div class="main">
+	<div class="contain">
+		<div class="content">
+			<h4>LMS</h4>
+			<hr>
+			<p>Get logged in</p>
+			<%= link_to "Admin Sign In", admin_session_path, class:"btn btn-primary" %>
+             <%= link_to "Student Sign In", student_session_path, class:"btn btn-primary" %>
+              <%= link_to "Teacher Sign In", teacher_session_path, class:"btn btn-primary" %>
+		</div>
+	</div>
+</div>
+<%= render 'about' %>

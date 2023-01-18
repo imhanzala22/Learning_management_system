@@ -1,10 +1,24 @@
+<div class="card  shadow text-center">
+  <div class="card-header">
+    Admin
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Welcome Back</h5>
+    <p class="card-text">Here! you have authority to manage LMS</p>
+    <a href="#" class="btn btn-info shadow">Explore more</a>
+  </div>
+  <div class="card-footer text-muted">
+    Last Logged in
+  </div>
+</div>
+
 <div class="row dashboard_cards">
 	<div class="col-md-4 d-flex justify-content-center" >
 		<div class="card text-center shadow mt-3 p-2 " id="card1" style="width:400px">
 			<div class="card-body" >
 				<h5 class="card-title">Teachers</h5>
 				<p class="card-text">We are warmly welcome to you at our Learning Management System, The total number of Teachers on our LMS are <%= Teacher.count %>.</p>
-				<%= link_to "Add more", new_admin_teacher_path, class:"btn btn-secondary"%>
+				<%= link_to "Add more", new_admin_teacher_path, class:"btn btn-info"%>
 			</div>
 		</div>
 	</div>
@@ -13,7 +27,7 @@
 			<div class="card-body">
 				<h5 class="card-title">Students</h5>
 				<p class="card-text">We are warmly welcome to you at our Learning Management System, The total number of Students on our LMS are <%= Student.count %>.</p>
-				<%= link_to "Add more", new_admin_student_path, class:"btn btn-secondary"%>
+				<%= link_to "Add more", new_admin_student_path, class:"btn btn-info"%>
 			</div>
 		</div>
 	</div>
@@ -22,7 +36,7 @@
 			<div class="card-body" >
 				<h5 class="card-title">Enrollments</h5>
 				<p class="card-text">We are warmly welcome to you at our Learning Management System, The total number of Enrollments on our LMS are <%= Enrollment.count %>.</p>
-				<%= link_to "Add more", new_admin_enrollment_path, class:"btn btn-secondary"%>
+				<%= link_to "Add more", new_admin_enrollment_path, class:"btn btn-info"%>
 			</div>
 		</div>
 	</div>
@@ -34,7 +48,7 @@
 			<div class="card-body" >
 				<h5 class="card-title">Sections</h5>
 				<p class="card-text">We are warmly welcome to you at our Learning Management System, The total number of Sections on our LMS are <%= Section.count %>.</p>
-				<%= link_to "Add more", new_admin_section_path, class:"btn btn-secondary"%>
+				<%= link_to "Add more", new_admin_section_path, class:"btn btn-info"%>
 			</div>
 		</div>
 	</div>
@@ -43,7 +57,7 @@
 			<div class="card-body" >
 				<h5 class="card-title">Courses</h5>
 				<p class="card-text">We are warmly welcome to you at our Learning Management System, The total number of Courses on our LMS are <%= Course.count %>.</p>
-				<%= link_to "Add more", new_admin_course_path, class:"btn btn-secondary"%>
+				<%= link_to "Add more", new_admin_course_path, class:"btn btn-info"%>
 			</div>
 		</div>   
 	</div>

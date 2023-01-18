@@ -1,8 +1,10 @@
-<div class="container-fluid w-25 border rounded shadow mt-5 p-4 text-center bg-light">
-  <h2>Log in</h2>
-</div>
-
-<div class="container-fluid w-25 border rounded shadow mt-5 p-4 text-center bg-light">
+<div class="main">
+	<div class="contain">
+		<div class="content">
+			<h4>Student Log In </h4>
+			<hr>
+			<p>Please Add credentials</p>
+			<div class="container-fluid w-25 border rounded shadow  text-center bg-light " style= "padding: 50px">
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
       <%= f.label :email %><br />
@@ -17,7 +19,11 @@
     </div>
 
     <div class="actions">
-      <%= f.submit "Log in", class:"btn btn-secondary" %>
+      <%= f.submit "Log in", class:"btn btn-info" %>
     </div>
   <% end %>
+</div>
+    <%= link_to "Back", root_path, class:"btn btn-info" %>
+		</div>
+	</div>
 </div>

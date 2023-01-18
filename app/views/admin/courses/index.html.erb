@@ -19,11 +19,11 @@
             <td><%= course.course_title %></td>
             <td><%= course.course_code %></td>
             <td>
-              <%= link_to "Edit", edit_admin_course_path(course), class:"btn btn-secondary" %>
+              <%= link_to "Edit", edit_admin_course_path(course), class:"btn btn-info" %>
               <%= link_to "Delete", admin_course_path(course),data: {
                 turbo_method: :delete,
                 turbo_confirm: "Are you sure?"
-              }, class:"btn btn-secondary" %>
+              }, class:"btn btn-info" %>
             </td>
           </tr>
       <% end %>
@@ -32,7 +32,7 @@
 </div>
 <div class="container-fluid border rounded shadow mt-5 p-4 text-center w-75 bg-white">
   <p>
-    <%= link_to "Add Course", new_admin_course_path, class: "btn btn-secondary" %>
-    <%= link_to "Back", admin_dashboard_index_path, class: "btn btn-secondary" %>
+    <%= link_to "Add Course", new_admin_course_path, class: "btn btn-info" %>
+    <%= link_to "Back", admin_dashboard_index_path, class: "btn btn-info" %>
   </p>
 </div>

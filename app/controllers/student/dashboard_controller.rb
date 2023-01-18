@@ -4,6 +4,10 @@ class Student::DashboardController < ApplicationController
     end
     
     def enrollments
-        @enrollments = current_student.enrollments
+        @enrollments = current_student.semesters[-1].enrollments.where(grade_id:1, student_id: current_student.id)
+    end
+
+    def student_history
+        @semesters = current_student.semesters
     end
 end

@@ -1,6 +1,8 @@
-<%= render "navbar" %>
+<%=  turbo_frame_tag 'main' do%>
+<%= render "carousel" %>
 <div>
     <p>
         <%= render "cards" %>
     </p>
 </div>
+<% end %>

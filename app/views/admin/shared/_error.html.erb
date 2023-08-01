@@ -1,0 +1,12 @@
+<% if model.errors.any? %>
+    <div class = 'card'>
+        <div class="class-body">
+            <h2>
+                <%= pluralize(model.errors.count, "error") %> prohibited this <%= model.class%> from being saved
+            </h2>
+						<% model.errors.each do |error|%>
+							<p class="lead"> <%= error.full_message %></p>
+        </div>
+    </div>
+<% end %>
+<% end %>

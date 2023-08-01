@@ -43,5 +43,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   get 'home/index'
   root "home#index"
+  get 'download_file', to: 'downloads#download_file'
   default_url_options :host => "localhost:3000"
 end

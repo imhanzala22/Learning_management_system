@@ -3,7 +3,9 @@
 </div>
 
 <div class="container-fluid border rounded shadow mt-5 p-4 text-center w-75 bg-light">
+  <div class="search_group d-flex justify-content-center">
   <%= render "search" %>
+  </div>
   <table class="table bg-light ">
     <thead>
       <tr>
@@ -12,6 +14,7 @@
         <th scope="col">Last Name</th>
         <th scope="col">Email</th>
         <th scope="col">Date of Birth</th>
+        <th scope="col">Image</th>
         <th scope="col">Edit | Delete</th>
       </tr>
     </thead>
@@ -22,6 +25,11 @@
             <td><%= teacher.last_name %></td>
             <td><%= teacher.email %></td>
             <td><%= teacher.Date_of_Birth %></td>
+            <td>
+            <% if teacher.image.attached? %>
+            <%= image_tag teacher.image, style: "width: 50px; display: d-block" %>
+            <% end %>
+            </td>
             <td>
               <%= link_to "Edit", edit_admin_teacher_path(teacher), class:"btn btn-info" %>
               <%= link_to "Delete", admin_teacher_path(teacher),data: {
@@ -34,18 +42,4 @@
     </tbody>
   </table>
 </div>
-<div class="container-fluid border rounded shadow mt-5 p-4 text-center w-75 bg-light">
-  <p>
-    <% if @page == 0 %>
-        <%= link_to "Add Teacher", new_admin_teacher_path, class: "btn btn-info" %>
-        <%= link_to "Back", admin_dashboard_index_path, class: "btn btn-info" %>
-        <%= link_to "Next", admin_teachers_path(page: @page + 1), class: "btn btn-info" %>
-      <% elsif @page = 1 %>
-        <%= link_to "Prev", admin_teachers_path(page: @page - 1), class: "btn btn-info" %>
-        <%= link_to "Add Teacher", new_admin_teacher_path, class: "btn btn-info" %>
-        <%= link_to "Back", admin_dashboard_index_path, class: "btn btn-info" %>
-      <% else %>
-        <%= link_to "Next", admin_teachers_path(page: @page + 1), class: "btn btn-info" %>
-      <% end %>
-  </p>
 </div>

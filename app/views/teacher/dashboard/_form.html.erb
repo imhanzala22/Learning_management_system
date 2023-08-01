@@ -1,0 +1,59 @@
+<%= form_for @teacher, url: teacher_dashboard_path, method: :patch, data: { turbo: false } do |f| %>
+  <%= render "admin/shared/error", model: @teacher%>
+  <div class="container-fluid w-25 border rounded shadow mt-5 p-4 text-center bg-light">
+    <div class="field">
+      <%= f.label :first_name %><br />
+      <%= f.text_field :first_name, value: @teacher.first_name, class: "form-control", readonly: true %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :last_name %><br />
+      <%= f.text_field :last_name, value: @teacher.last_name, class: "form-control", readonly: true %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :Date_of_Birth %><br />
+      <%= f.date_select :Date_of_Birth, value: @teacher.Date_of_Birth, class: "form-control", readonly: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :profile_image, class: "form-label" %>
+      <% if current_teacher.image.attached? %>
+        <%= image_tag @teacher.image, class:"form-control" %>
+        <%= f.file_field :image, class: "form-control" %>
+      <% else %>
+        <%= f.file_field :image, class: "form-control" %>
+      <% end %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, value: @teacher.email, class: "form-control", readonly: true %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+    </div>
+  
+    <div class="field">
+      <p>
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" , class: "form-control" %>
+      </p>
+    </div>
+  
+    <div class="actions">
+      <p>
+        <%= f.submit class: 'btn btn-secondary' %>
+      </p>
+    </div>
+
+    <div class="actions">
+      <%= link_to "Back", teacher_dashboard_index_path, class: 'btn btn-secondary' %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,74 @@
+<%= form_for @student, url: student_dashboard_path, method: :patch, data: { turbo: false } do |f| %>
+  <%= render "admin/shared/error", model: @student%>
+  <div class="container-fluid w-25 border rounded shadow mt-5 p-4 text-center bg-light">
+    <div class="field">
+      <%= f.label :first_name %><br />
+      <%= f.text_field :first_name, value: @student.first_name, class: "form-control", readonly: true %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :last_name %><br />
+      <%= f.text_field :last_name, value: @student.last_name, class: "form-control", readonly: true %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :Date_of_Birth %><br />
+      <%= f.date_select :Date_of_Birth, value: @student.Date_of_Birth, class: "form-control", readonly: true %>
+    </div>
+
+    <div class="field">
+      <%= label_tag :semester_type%><br>
+      <%= text_field_tag :semester_type,@student.semesters[-1].semester_type, readonly: true %>
+    </div>
+
+    <div class="field">
+      <%= label_tag :semester_no %><br>
+      <%= text_field_tag :semester_no,@student.semesters[-1].semester_no, readonly: true %>
+    </div>
+
+    <div class="field">
+      <%= label_tag :enroll_year %><br>
+      <%= text_field_tag "enroll_year",@student.student_semesters[-1].enroll_year, readonly: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :profile_image, class: "form-label" %>
+      <% if current_student.image.attached? %>
+        <%= image_tag @student.image, class:"form-control" %>
+        <%= f.file_field :image, class: "form-control" %>
+      <% else %>
+        <%= f.file_field :image, class: "form-control" %>
+      <% end %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, value: @student.email, class: "form-control", readonly: true %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+    </div>
+  
+    <div class="field">
+      <p>
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" , class: "form-control" %>
+      </p>
+    </div>
+  
+    <div class="actions">
+      <p>
+        <%= f.submit class: 'btn btn-info' %>
+      </p>
+    </div>
+
+    <div class="actions">
+      <%= link_to "Back", student_dashboard_path, class: 'btn btn-info' %>
+    </div>
+  </div>
+<% end %>

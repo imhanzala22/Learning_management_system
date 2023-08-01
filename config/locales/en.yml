@@ -30,4 +30,15 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    errors:
+      models:
+        student:
+          attributes:
+            password:
+              invalid: "Password should contain 8 letter and atleast one capital lette and a special charactar"
+        teacher:
+          attributes:
+            password:
+              invalid: "Password should contain 8 letter and atleast one capital lette and a special charactar"
+        

@@ -10,7 +10,10 @@
           <%= link_to "Enrollments", student_enrollments_path(current_student.id), class:"nav-link" %>
         </li>
         <li class="nav-item">
-           <%= link_to "Enrollments", student_history_path(current_student.id), class:"nav-link" %>
+           <%= link_to "Transcript", student_history_path(current_student.id), class:"nav-link" %>
+        </li>
+        <li class="nav-item">
+           <%= link_to "Profile", student_dashboard_path(current_student.id), class:"nav-link" %>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

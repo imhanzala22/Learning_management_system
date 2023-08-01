@@ -1,34 +1,59 @@
-<div class="container-fluid border rounded shadow mt-5 p-4 text-center w-75 bg-light">
-  <h1><%= current_student.first_name %> <%= current_student.last_name %></h1>
+<div class="container-fluid w-25 border rounded shadow mt-5 p-4 text-center bg-light">
+  <h2>Profile Details</h2>
 </div>
-
-<div class="container-fluid border rounded shadow mt-5 p-4 text-center w-75 bg-light">
-
-  <table class="table bg-light ">
-    <thead>
-      <tr>
-        <th scope="col">Sr.no</th>
-        <th scope="col">Semester</th>
-        <th scope="col">Course Name</th>
-        <th scope="col">Section</th>
-        <th scope="col">Teacher Name</th>
-        <th scope="col">Grade</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @enrollments.try(:each) do |enrollment| %>
-            <td><input type="checkbox" name="brand"> <%= enrollment.id %> </td>
-            <td><%= enrollment.semester.semester_no %>
-            <td><%= enrollment.section.course.course_title %></td>
-            <td><%= enrollment.section.section_name %></td>
-            <td><%= enrollment.section.teacher.first_name %> <%= enrollment.section.teacher.last_name %></td>
-            <td><%= enrollment.grade.grade_type%></td>
-          </tr>
+<div class="container-fluid w-25 border rounded shadow mt-5 p-4 text-center bg-light">
+  <div class="text-center">
+    <p>
+      <% if current_student.image.attached? %>
+        <%= image_tag current_student.image, style: "width: 200px; display: d-block" %>
       <% end %>
-    </tbody>
-  </table>
-</div>
-<div class="container-fluid border rounded shadow mt-5 p-4 text-center w-75 bg-light">
-  <%= link_to "Back", student_dashboard_index_path, class:"btn btn-info" %>
-</div>
+    </p>
+  </div>
 
+  <p>
+    <strong> ID : </strong> 
+    <%= current_student.id %>
+  </p>
+
+  <p>
+    <strong> First Name : </strong> 
+    <%= current_student.first_name %>
+  </p>
+
+  <p>
+    <strong> Last Name : </strong>
+    <%= current_student.last_name %>
+  </p>
+
+  <p>
+    <strong> Email : </strong>
+    <%= current_student.email %>
+  </p>
+
+  <p>
+    <strong> Date_of_Birth : </strong>
+    <%= current_student.Date_of_Birth %>
+  </p>
+
+  <p>
+    <strong> Roll_no : </strong>
+    <%= current_student.roll_no %>
+  </p>
+
+  <p>
+    <strong> Semester_Type : </strong>
+    <%= current_student.semesters.last.semester_type %>
+  </p>
+
+  <p>
+    <strong> Semester_No : </strong>
+    <%= current_student.semesters.last.semester_no %>
+  </p>
+
+
+
+  <%= link_to "Back", student_dashboard_index_path, class: "btn btn-info" %>
+
+  <%= link_to "Edit", edit_student_dashboard_path(current_student.id), class:"btn btn-info" %>
+
+</div>

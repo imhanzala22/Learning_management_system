@@ -1,0 +1,25 @@
+# Import the required libraries
+require 'selenium-webdriver'
+
+# Create a new instance of the Firefox driver
+driver = Selenium::WebDriver.for :firefox
+
+# Navigate to the URL containing the file
+driver.get("https://example.com/files")
+
+# Locate the link to the file
+file_link = driver.find_element(:css, "a[href*='example_file.pdf']")
+
+# Click the link to initiate the download
+file_link.click
+
+# Handle the download dialog box
+driver.switch_to.alert.accept
+
+# Set the browser preferences to automatically download files to a specific directory
+profile = Selenium::WebDriver::Firefox::Profile.new
+profile['browser.download.dir'] = '/path/to/downloads'
+profile['browser.download.folderList'] = 2
+profile['browser.helperApps.neverAsk.saveToDisk'] = "application/pdf"
+
+driver = Selenium::WebDriver.for :firefox, profile: profile

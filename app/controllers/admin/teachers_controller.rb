@@ -1,9 +1,13 @@
-class Admin::TeachersController < ApplicationController
-	TEACHERS_PER_PAGE = 8
+class Admin::TeachersController < Admin::AdminAuthenticateController
+	before_action :find_teacher, only: %i[edit update destroy show]
 
 	def index
-		@page = params.fetch(:page,0).to_i
-		@teachers = Teacher.offset(@page * TEACHERS_PER_PAGE).limit(TEACHERS_PER_PAGE)
+		@teachers= Teacher.all
+		respond_to do |format|
+			format.turbo_stream{
+			  render turbo_stream: turbo_stream.update('main', template: 'admin/teachers/index')
+			}
+		  end
 	end
 
 	def new
@@ -12,40 +16,51 @@ class Admin::TeachersController < ApplicationController
 
 	def create
 		@teacher = Teacher.new(teacher_params)
-		courses = params[:course_ids].map {|x| x.to_i}
+		if params[:course_ids]
+			courses = params[:course_ids].map {|x| x.to_i}
         @teacher.course_ids = courses
+	    else 
+		    flash[:notice] = "no course available"
+			render :new and return
+		end
 		if @teacher.save
+			flash[:notice] = "A new teacher is added"
 			UserMailer.teacher_welcome_email(@teacher).deliver
 			redirect_to admin_teachers_path
 		else
+			flash[:alert] = "Can't create, try again"
 			render :new
 		end
 	end
 
 	def show
-		@teacher = Teacher.find(params[:id])
+		
 	end
 	
 	def edit
-		@teacher = Teacher.find(params[:id])
 	end
 
 	def update
-		@teacher = Teacher.find(params[:id])
-		courses = params[:course_ids].map {|x| x.to_i} 
+		courses = params[:course_ids]&.map {|x| x.to_i} 
         @teacher.course_ids = courses
 		if @teacher.update(teacher_params)
+			flash[:notice] = "teacher is updated"
 			redirect_to admin_teachers_path
 		else
+			flash[:alert] = "Can't updated, Try again "
 			render :edit, status: :unprocessable_entity
 		end
 	end
 
 	def destroy
-		@teacher = Teacher.find(params[:id])
-		@teacher.destroy
+		if @teacher.destroy
+			flash[:notice] = "teacher deleted"
+			redirect_to admin_teachers_path, status: :see_other
+		else
+			flash[:alert] = "Can't delete, Try Again"
+			redirect_to admin_courses_path
+		end
 
-		redirect_to admin_teachers_path, status: :see_other
 	end
 
 	def search
@@ -61,5 +76,8 @@ class Admin::TeachersController < ApplicationController
 
 	def teacher_params
 		params.require(:teacher).permit(:email, :password, :first_name, :last_name, :Date_of_Birth)
+	end
+	def find_teacher
+		@teacher = Teacher.find(params[:id])
 	end
 end

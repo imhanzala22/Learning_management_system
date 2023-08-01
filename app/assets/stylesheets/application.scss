@@ -28,6 +28,11 @@
   transform: scale(1.1);
   transition:.3s;
 }
+.search_group{
+  padding: 20px
+}
 
-@import 'index_page.scss';
-@import 'about.scss';
+@import 'index_page';
+@import 'about';
+@import 'carousel';
+@import 'dashboard_card'

@@ -3,7 +3,9 @@
 </div>
 
 <div class="container-fluid border rounded shadow mt-5 p-4 text-center w-75 bg-light">
+ <div class="search_group d-flex justify-content-center">
   <%= render "search" %>
+  </div> 
   <table class="table bg-light ">
     <thead>
       <tr>
@@ -14,6 +16,7 @@
         <th scope="col">Semester</th>
         <th scope="col">Semester Type</th>
         <th scope="col">Email</th>
+        <th scope="col">Image</th>
         <th scope="col">Date of Birth</th>
         <th scope="col">Edit | Delete</th>
       </tr>
@@ -27,6 +30,11 @@
             <td><%= student.semesters.last.semester_no %></td>
             <td><%= student.semesters.last.semester_type %></td>
             <td><%= student.email %></td>
+            <td>
+            <% if student.image.attached? %>
+            <%= image_tag student.image, style: "width: 50px; display: d-block" %>
+            <% end %>
+            </td>
             <td><%= student.Date_of_Birth %></td>
             <td>
               <%= link_to "Edit", edit_admin_student_path(student), class:"btn btn-info" %>

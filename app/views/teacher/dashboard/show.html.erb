@@ -1,0 +1,43 @@
+<div class="container-fluid w-25 border rounded shadow mt-5 p-4 text-center bg-light">
+  <h2>Profile Details</h2>
+</div>
+<div class="container-fluid w-25 border rounded shadow mt-5 p-4 text-center bg-light">
+  <div class="text-center">
+    <p>
+      <% if current_teacher.image.attached? %>
+        <%= image_tag current_teacher.image, style: "width: 200px; display: d-block" %>
+      <% end %>
+    </p>
+  </div>
+
+  <p>
+    <strong> ID : </strong> 
+    <%= current_teacher.id %>
+  </p>
+
+  <p>
+    <strong> First Name : </strong> 
+    <%= current_teacher.first_name %>
+  </p>
+
+  <p>
+    <strong> Last Name : </strong>
+    <%= current_teacher.last_name %>
+  </p>
+
+  <p>
+    <strong> Email : </strong>
+    <%= current_teacher.email %>
+  </p>
+
+  <p>
+    <strong> Date_of_Birth : </strong>
+    <%= current_teacher.Date_of_Birth %>
+  </p>
+
+
+  <%= link_to "Back", teacher_dashboard_index_path, class: "btn btn-info" %>
+
+  <%= link_to "Edit", edit_teacher_dashboard_path(current_teacher.id), class:"btn btn-info" %>
+
+</div>
